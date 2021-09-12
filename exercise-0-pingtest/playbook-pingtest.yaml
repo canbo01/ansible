@@ -1,0 +1,46 @@
+-
+    name: 'Execute a script on all web server nodes and start httpd service'
+    hosts: web_nodes
+    vars:
+        car_model: 'BMW M3'
+        country_name: 'USA'
+        title: 'Systems Engineer '
+        age: 25
+    tasks:
+        -
+            name: 'Update entry into /etc/resolv.conf'
+            lineinfile:
+                path: /etc/resolv.conf
+                line: 'nameserver 10.1.250.10'
+        -
+            name: 'Adding a user'
+            user:
+                name: web_user
+                uid: 1040
+                group: developers
+        -
+            name: 'Execute a script'
+            script: /tmp/install_script.sh
+        -
+            name: 'Start httpd service'
+            service:
+                name: httpd
+                state: present
+        -
+            name: 'Print my car model'
+            command: 'echo "My car''s model is {{car_model}} "'
+        -
+            name: 'Print my country'
+            command: 'echo "I live in the {{country_name}} "'
+        -
+            name: 'Print my title'
+            command: 'echo "I work as a {{title}} "'
+        -
+            service: 'name=mysql state=started'
+            when: 'ansible_host=="server4.company.com"'
+        -
+            command: 'echo "I am a Child"'
+            when: age <18
+        -
+            command: 'echo "I am an Adult"'
+            when: age >= 18

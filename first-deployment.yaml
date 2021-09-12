@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firs-deployment
+  labels:
+    apps: myapp
+spec:
+  selector:
+    matchLabels:
+      apps: myapp
+  replicas: 3
+  template:
+    metadata:
+      name: nginx-2
+      labels:
+        apps: myapp
+    spec:
+      containers:
+      - name: nginx-2
+        image: nginx
+        resources:
+        ports:
+          - containerPort: 80
