@@ -1,4 +1,5 @@
 alias kl="kubectl"
 alias klc="kubectl create"
 alias klg="kubectl get"
+alias kld="kubectl describe"
 alias cl="clear"

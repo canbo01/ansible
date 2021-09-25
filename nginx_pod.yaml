@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-2
+  name: nginx-pod
   labels:
-    env: production
+    app: nginx-webserver
 spec:
   containers:
-  - name: nginx-2
+  - name: nginx
     image: nginx
     resources:
     ports:

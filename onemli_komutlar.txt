@@ -1,0 +1,6 @@
+kubectl exec -it nginx-pod -- bash
+kubectl exec -it my-pod --container con_name1 -- bash
+
+kubectl expose deployment dep_name --type=ClusterIP --name=backend
+
+minikube service service_name --url
