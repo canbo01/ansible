@@ -4,3 +4,31 @@ kubectl exec -it my-pod --container con_name1 -- bash
 kubectl expose deployment dep_name --type=ClusterIP --name=backend
 
 minikube service service_name --url
+
+kubectl run redis --image=redis123 --dry-run=client -oyaml > redis_pod.yaml
+kubectl scale replicaset new-replica-set --replicas=5
+kubectl create deployment httpd-frontend --image=httpd:2.4-alpine --replicas=3
+
+#imprative commands
+kubectl run nginx-pod --image=nginx:alpine
+kubectl run redis --image=redis:alpine --dry-run=client -o yaml > redis_pod.yaml
+
+#open port from pod
+kubectl expose pod redis --port=6379 --name redis-service
+
+kubectl create namespace dev-ns
+
+kubectl config set-context --current --namespace=NAMESPACE
+
+kubectl create deployment redis-deploy -n dev-ns --image=redis --replicas=2
+
+
+kubectl run httpd --image=httpd:alpine 
+kubectl expose pod httpd --type=ClusterIP --port=80 --name httpd
+
+
+#TAINT and TOLERATION
+kubectl taint node node01 spray=mortein:NoSchedule
+
+kubectl taint node controlplane node-role.kubernetes.io/master:NoSchedule-
+

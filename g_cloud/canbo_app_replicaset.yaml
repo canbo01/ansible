@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: canbo-rs
+  labels:
+    name: canbo-app
+spec:
+  selector:
+    matchLabels:
+      name: canbo-app
+  replicas: 4
+  template:
+    metadata:
+      name: canbo-pod
+      labels:
+        name: canbo-app
+    spec:
+      containers:
+      - name: canbo-app
+        image: nginx
+        resources:
+        ports:
+          - containerPort: 80
+

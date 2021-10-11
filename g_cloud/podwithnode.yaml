@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: canbo-pod
+  labels:
+    name: canbo-app
+spec:
+  containers:
+  - name: canbo-app
+    image: nginx
+    resources:
+    ports:
+      - containerPort: 80
+  nodeName: gke-gke-test-default-pool-755cb537-bnbw

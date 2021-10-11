@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simple-webapp-deployment
+  name: canbo-deployment
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
-      name: simple-webapp
+      name: canbo-app
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -15,12 +15,11 @@ spec:
   template:
     metadata:
       labels:
-        name: simple-webapp
+        name: canbo-app
     spec:
       containers:
-      - image: nginx
-        name: simple-webapp
-        ports:
-        - containerPort: 8080
-          protocol: TCP
+      - name: canbo-app
+        image: nginx
         resources:
+        ports:
+          - containerPort: 80
